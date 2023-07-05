@@ -3,9 +3,10 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import expressEjsLayouts from 'express-ejs-layouts';
 import configureFlash from './backend/config/flash.js'
 import connectDB from './backend/config/db.js';
-// import indexRouter from './backend/routes/index.js';
+import indexRouter from './backend/routes/index.routes.js';
 // import authRouter from './backend/routes/auth.js';
 // import booksRouter from './backend/routes/books.js';
 
@@ -15,7 +16,9 @@ const __dirname = path.dirname(__filename);
 
 // Configuración del motor de plantillas EJS
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'frontend', 'views'));
+app.set('views', path.join(__dirname, 'frontend/views'));
+app.set('layout', 'layouts/layout'); // Ruta del archivo de layout
+app.use(expressEjsLayouts);
 
 // Middleware body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,7 +35,7 @@ app.use(session({
 }));
 
 // Rutas
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 // app.use('/auth', authRouter);
 // app.use('/books', booksRouter);
 

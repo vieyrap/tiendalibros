@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -8,24 +8,31 @@
         <%= title %>
     </title>
     <!-- Aquí van los enlaces a los estilos CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-pzjw8f+uaZx0gptN+sK9+Yn2P5bVo49RyYBfOXK/79a8Kpe5tO9ef1z0e8l+6pp" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Estilo CSS -->
+    <link rel="stylesheet" href="/css/estilo.css">
 </head>
 
 <body>
     <header>
         <!-- Incluye el parcial del encabezado -->
-        <% include('partials/header') %>
+        <%- include('../partials/nav.ejs') %>
     </header>
 
     <main>
         <!-- Aquí va el contenido específico de cada página -->
-        <%- content %>
+        <%- body %>
     </main>
 
     <footer>
         <!-- Incluye el parcial del pie de página -->
-        <% include('partials/footer') %>
+        <%- include('../partials/footer.ejs') %>
     </footer>
 
     <!-- Aquí van los scripts JS y otros scripts -->
