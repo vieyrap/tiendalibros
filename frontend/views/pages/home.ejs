@@ -1,0 +1,139 @@
+<%- include('../partials/header.ejs') %>
+    <%- include('../partials/nav.ejs') %>
+
+        <main>
+            <!-- SECCION HERO -->
+            <section class="hero">
+                <div class="overlay-hero">
+                    <h1>La tienda de libros más grande de Buenos Aires</h1>
+                    <button type="button" class="col-3 btn-comprar-ahora mt-4">Compra ya</button>
+                </div>
+            </section>
+            <!-- SECCION TENDENCIAS -->
+            <section class="tending-books">
+                <h2 class="titulo-seccion mb-4">Tendencias</h2>
+                <h3 class="titulo-seccion mb-4">Tendencias</h3>
+                <div class="d-flex flex-wrap justify-content-between clearfix">
+                    <% for(let i=4; i < 8; i++) { %>
+                        <div class="col-3 card card-libro">
+                            <div class="contenedor-imagen" data-mdb-ripple-color="light">
+                                <a href="/libros/<%= libros[i].isbn %>">
+                                    <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"
+                                        alt="<%= libros[i].titulo %>" />
+                                </a>
+                            </div>
+                            <div class="card-body pt-2">
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-2">
+                                        <%= libros[i].autor %>
+                                    </p>
+                                    <div>
+                                        <i class="bi bi-bookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h5>
+                                        <%= libros[i].titulo %>
+                                    </h5>
+                                    <div>
+                                        <p>$ <%= libros[i].precio %></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/agregar-carrito/<%= libros[i].isbn %>" class="btn btn-comprar-ahora">Agregar al carrito</a>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+
+            <!-- SECCION OFERTAS ESPECIALES -->
+            <section class="ofertas-especiales">
+                <h2>Ofertas Especiales</h2>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <% for(let i=9; i < 13; i++) { %>
+                        <div class="col-3 card card-libro">
+                            <div class="contenedor-imagen" data-mdb-ripple-color="light">
+                                <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"
+                                    alt="Card image cap" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body pt-2">
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-2">
+                                        <%= libros[i].autor %>
+                                    </p>
+                                    <div>
+                                        <i class="bi bi-bookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h5>
+                                        <%= libros[i].titulo %>
+                                    </h5>
+                                    <div>
+                                        <p>$18</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </section>
+
+            <!-- SECCION PRÓXIMAMENTE -->
+            <section class="proximamente">
+                <h2>Próximamente</h2>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <% for(let i=14; i < 18; i++) { %>
+                        <div class="col-3 card card-libro">
+                            <div class="contenedor-imagen" data-mdb-ripple-color="light">
+                                <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"
+                                    alt="Card image cap" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body pt-2">
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-2">
+                                        <%= libros[i].autor %>
+                                    </p>
+                                    <div>
+                                        <i class="bi bi-bookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h5>
+                                        <%= libros[i].titulo %>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </section>
+
+            <!-- SECCION BANNER -->
+            <section class="banner">
+                <div>
+                    <h1>BANNER</h1>
+                </div>
+            </section>
+
+            <!-- SECCION NOTICIAS -->
+            <section class="news">
+                <h2>Noticias</h2>
+            </section>
+
+            <!-- SECCION AYUDA -->
+            <section class="news text-center">
+                <h1>¿Necesitas ayuda en decidirte?</h1>
+                <h3>Nuestro motor de recomendaciones te llevará a tus libros perfectos</h3>
+                <button class="col-3 btn-comprar-ahora">Encontrá tu libro</button>
+            </section>
+
+        </main>
+
+        <%- include('../partials/footer.ejs') %>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <!-- Aquí van los enlaces a los estilos CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-pzjw8f+uaZx0gptN+sK9+Yn2P5bVo49RyYBfOXK/79a8Kpe5tO9ef1z0e8l+6pp" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <!-- Incluye el parcial del encabezado -->
+        <% include('partials/header') %>
+    </header>
+
+    <main>
+        <!-- Aquí va el contenido específico de cada página -->
+        <%- content %>
+    </main>
+
+    <footer>
+        <!-- Incluye el parcial del pie de página -->
+        <% include('partials/footer') %>
+    </footer>
+
+    <!-- Aquí van los scripts JS y otros scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-O1N8m8PewzP87v9B0zXWV+YXm9Ddr2PH2OSgHtSx1a+6FZv/Q7MBPh4EhyCNESb/"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-pzjw8f+uaZx0gptN+sK9+Yn2P5bVo49RyYBfOXK/79a8Kpe5tO9ef1z0e8l+6pp"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

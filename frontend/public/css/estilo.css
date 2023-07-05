@@ -1,0 +1,149 @@
+/* IMPORTAR FONT */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+/* ELIMINAR PARAMETROS POR DEFAULT */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: 0;
+    background-color: unset;
+}
+
+input {
+    outline: none;
+    border: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.row {
+    --bs-gutter-x: 0;
+}
+
+/* ESTILOS PROPIOS */
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    color: #36352d !important;
+    background-color: #f5f4e8;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 18px;
+}
+section{
+    padding: 7% 5%;
+    padding-bottom: 0;
+    
+}
+
+p {
+    font-size: 14px;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: end;
+    padding: 7% 5%;
+    background-image: linear-gradient(rgb(54, 53, 45, 0.5), rgb(54, 53, 45, 0.3)), url(/img/1-panoramica-biblioteca.jpg);
+    background-size: cover;
+    height: 95vh;
+}
+
+.overlay-hero {
+    color: #fcf6ac;
+}
+
+.btn-comprar-ahora {
+    background: #e1ae80;
+    color: white;
+    line-height: 2.5rem;
+    border-radius: 3px;
+}
+
+/* SECCIONES */
+/* .titulo-seccion{
+
+} */
+
+.proximamente{
+    margin-bottom: 8%;
+}
+
+.banner{
+    background-color: #36352d;
+}
+
+/* CARDS LIBROS*/
+.card-libro{
+    width: 24%;
+    height: auto;
+}
+
+.contenedor-imagen{
+    height: 430px;
+}
+.img-portada-libro{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* FOOTER */
+#custom-search-input {
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background: #f5f4e8;
+}
+
+#custom-search-input input {
+    border: 0;
+    box-shadow: none;
+    background: #f5f4e8;
+}
+
+#custom-search-input button {
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #E1AE80;
+    padding: 0 8px 0 10px;
+    border-left: solid 0px #ccc;
+}
+
+#custom-search-input button:hover {
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search {
+    font-size: 23px;
+}
