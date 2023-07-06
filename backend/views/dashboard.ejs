@@ -1,0 +1,30 @@
+<h1>Dashboard</h1>
+<div>
+    <h2>Cantidad de libros:
+    </h2>
+    <h2>Cantidad de órdenes:
+    </h2>
+</div>
+<div>
+    <h2>Crear libro</h2>
+    <form action="/books" method="POST">
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required>
+        <!-- Agrega aquí los demás campos para crear un libro -->
+        <button type="submit">Crear</button>
+    </form>
+</div>
+<div>
+    <h2>Listado de libros</h2>
+    <ul>
+
+        <li>
+
+            <a href="/books/edit">Editar</a>
+            <form action="/books" method="POST">
+                <button type="submit">Eliminar</button>
+            </form>
+        </li>
+
+    </ul>
+</div>
