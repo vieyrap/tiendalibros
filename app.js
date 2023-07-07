@@ -8,9 +8,8 @@ import expressEjsLayouts from 'express-ejs-layouts';
 import configureFlash from './backend/config/flash.js'
 import connectDB from './backend/config/db.js';
 import indexRouter from './backend/routes/index.routes.js';
+import userRouter from './backend/routes/user.routes.js'
 import dashboardRouter from './backend/routes/dashboard.routes.js';
-// import authRouter from './backend/routes/auth.js';
-// import booksRouter from './backend/routes/books.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -21,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'frontend/public')));
 app.set('views', [
     path.join(__dirname, 'frontend/views'),
     path.join(__dirname, 'backend/views')
-  ]);
+]);
 
 // Configurar la carpeta de vistas del backend
 app.set('backendViews', path.join(__dirname, 'backend/views'));
@@ -43,9 +42,13 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-// Rutas
-app.use('/', indexRouter);
-// Rutas
+// Rutas Generales
+app.use(indexRouter);
+
+// Rutas Usuarios
+app.use(userRouter);
+
+// Rutas Backend
 app.use('/admin', dashboardRouter);
 
 // Conexión a la base de datos

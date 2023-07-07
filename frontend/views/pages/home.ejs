@@ -9,18 +9,19 @@
 <section class="tending-books">
     <h2 class="titulo-seccion mb-4">Tendencias</h2>
     <h3 class="titulo-seccion mb-4">Tendencias</h3>
-    <div class="d-flex flex-wrap justify-content-between clearfix">
+    <div class="row d-flex justify-content-between clearfix">
         <% for(let i=4; i < 8; i++) { %>
-            <div class="col-3 card card-libro">
+            <div class="col-3 card p-0 card-libro">
                 <div class="contenedor-imagen" data-mdb-ripple-color="light">
                     <a href="/libros/<%= libros[i].isbn %>">
                         <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"
                             alt="<%= libros[i].titulo %>" />
+                            <a href="/agregar-carrito/<%= libros[i].isbn %>" class="btn btn-agregar-cart">Agregar al carrito</a>
                     </a>
                 </div>
                 <div class="card-body pt-2">
                     <div class="d-flex justify-content-between">
-                        <p class="mb-2">
+                        <p class="mb-2 texto-small">
                             <%= libros[i].autor %>
                         </p>
                         <div>
@@ -28,17 +29,18 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <h5>
+                        <p class="texto-medium mb-0">
                             <%= libros[i].titulo %>
-                        </h5>
+                        </p>
                         <div>
-                            <p>$ <%= libros[i].precio %></p>
+                            <p class="mb-0">$ <%= libros[i].precio %>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <a href="/agregar-carrito/<%= libros[i].isbn %>" class="btn btn-comprar-ahora">Agregar al carrito</a>
+                
             </div>
-        <% } %>
+            <% } %>
     </div>
 </section>
 
@@ -49,15 +51,14 @@
         <% for(let i=9; i < 13; i++) { %>
             <div class="col-3 card card-libro">
                 <div class="contenedor-imagen" data-mdb-ripple-color="light">
-                    <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"
-                        alt="Card image cap" />
+                    <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>" alt="Card image cap" />
                     <a href="#!">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
                 </div>
                 <div class="card-body pt-2">
                     <div class="d-flex justify-content-between">
-                        <p class="mb-2">
+                        <p class="mb-2 texto-small">
                             <%= libros[i].autor %>
                         </p>
                         <div>
@@ -65,9 +66,9 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <h5>
+                        <p class="texto-medium">
                             <%= libros[i].titulo %>
-                        </h5>
+                        </p>
                         <div>
                             <p>$18</p>
                         </div>
@@ -85,15 +86,14 @@
         <% for(let i=14; i < 18; i++) { %>
             <div class="col-3 card card-libro">
                 <div class="contenedor-imagen" data-mdb-ripple-color="light">
-                    <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"
-                        alt="Card image cap" />
+                    <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>" alt="Card image cap" />
                     <a href="#!">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
                 </div>
                 <div class="card-body pt-2">
                     <div class="d-flex justify-content-between">
-                        <p class="mb-2">
+                        <p class="mb-2 texto-small">
                             <%= libros[i].autor %>
                         </p>
                         <div>
@@ -101,9 +101,9 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <h5>
+                        <p class="texto-medium">
                             <%= libros[i].titulo %>
-                        </h5>
+                        </p>
                     </div>
                 </div>
             </div>

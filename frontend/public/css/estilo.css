@@ -21,10 +21,6 @@ li {
     list-style: none;
 }
 
-.row {
-    --bs-gutter-x: 0;
-}
-
 /* ESTILOS PROPIOS */
 
 body {
@@ -52,10 +48,19 @@ h4 {
 h5 {
     font-size: 18px;
 }
+
 section{
     padding: 7% 5%;
     padding-bottom: 0;
     
+}
+
+.texto-medium{
+    font-size: 15px;
+}
+
+.texto-small{
+    font-size: 12px;
 }
 
 p {
@@ -86,10 +91,6 @@ p {
 }
 
 /* SECCIONES */
-/* .titulo-seccion{
-
-} */
-
 .proximamente{
     margin-bottom: 8%;
 }
@@ -100,19 +101,71 @@ p {
 
 /* CARDS LIBROS*/
 .card-libro{
-    width: 24%;
+    width: 23%;
     height: auto;
 }
 
 .contenedor-imagen{
-    height: 430px;
+    height: 380px;
 }
 .img-portada-libro{
     width: 100%;
     height: 100%;
 }
 
+.btn-agregar-cart{
+    position: absolute;
+    bottom: 23%;
+    right: 10%;
+    width: 80%;
+    background: #fdf7ac;
+    color: #36352d;
+    line-height: 2rem;
+    border-radius: 3px;
 
+}
+
+/* NOSOTROS */
+.contenedor-nosotros{
+    padding-left: 6rem;
+}
+
+.texto-nosotros{
+    text-align: justify;
+    padding-top: 4rem;
+    line-height: 1.5rem;
+}
+
+/* BUSCADOR */
+.input-buscar{
+    background-color: #f5f4e8;
+}
+
+.input-buscar:focus{
+    color: #212529;
+    background-color: #f5f4e8;
+    border-color: #212529;
+    outline: 0;
+    box-shadow: 0 0 0 0rem rgba(13,110,253,.25);
+}
+
+.btn-buscar{
+    background: #e5b88f;
+    color: #36352d;
+    line-height: 2.5rem;
+    border-radius: 3px;
+}
+
+.btn-buscar:hover{
+    background: #dea876 !important;
+    color: #36352d !important;
+    line-height: 2.5rem;
+    border-radius: 3px;
+}
+
+.contendor-resultados{
+    min-height: 150px;
+}
 
 /* FOOTER */
 #custom-search-input {
