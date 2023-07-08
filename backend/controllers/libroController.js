@@ -1,27 +1,48 @@
 
 import Libro from "../models/libro.js";
 
-// Función para crear un nuevo libro
-export async function crearLibro(req, res) {
-    try {
-        const libroData = req.body;
-        const nuevoLibro = await Libro.create(libroData);
-        res.status(201).json(nuevoLibro);
-    } catch (error) {
-        res.status(500).json({ message: 'Error al crear el libro', error });
-        }
-}
-
 // Función para obtener todos los libros
 async function obtenerLibros() {
     try {
         const libros = await Libro.find({});
-        console.log(libros)
         return libros
     } catch (error) {
         throw new Error('Error al obtener los libros');
         }
 }
+
+//Función para obtener la lista de categorias
+async function obtenerCategorias() {
+    try {
+        const categorias = await Libro.distinct('categoria');
+        return categorias
+
+    } catch (error) {
+        throw new Error('Error al obtener las categorias:', error);
+    }
+};
+
+//Función para obtener la lista de autores
+async function obtenerEditoriales() {
+    try {
+        const editoriales = await Libro.distinct('editorial');
+        return editoriales
+
+    } catch (error) {
+        throw new Error('Error al obtener las editoriales:', error);
+    }
+};
+
+//Función para obtener la lista de autores
+async function obtenerAutores() {
+    try {
+        const autores = await Libro.distinct('autor');
+        return autores
+
+    } catch (error) {
+        throw new Error('Error al obtener los autores:', error);
+    }
+};
 
   // Función para obtener un libro por su ID
 async function obtenerLibroPorId(req, res) {
@@ -36,6 +57,33 @@ async function obtenerLibroPorId(req, res) {
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener el libro', error });
     }
+}
+
+async function buscarLibros (busqueda) { 
+    try {
+      // Realizar la búsqueda en la base de datos
+        let resultados = await Libro.find({
+            $or: [
+            { titulo: { $regex: busqueda, $options: 'i' } }, // Buscar por título (ignorando mayúsculas/minúsculas)
+            { resumen: { $regex: busqueda, $options: 'i' } } // Buscar por resumen (ignorando mayúsculas/minúsculas)
+            ]
+        });
+        // Enviar los resultados como respuesta
+        return resultados
+    } catch (error) {
+        throw new Error('Error al realizar la busqueda:', error);
+    }
+}
+
+// Función para crear un nuevo libro
+export async function crearLibro(req, res) {
+    try {
+        const libroData = req.body;
+        const nuevoLibro = await Libro.create(libroData);
+        res.status(201).json(nuevoLibro);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al crear el libro', error });
+        }
 }
 
   // Función para actualizar un libro
@@ -70,9 +118,13 @@ async function eliminarLibro(req, res) {
 }
 
 export default{
-    crearLibro,
     obtenerLibros,
+    obtenerAutores,
+    obtenerCategorias,
+    obtenerEditoriales,
+    buscarLibros,
     obtenerLibroPorId,
+    crearLibro,
     actualizarLibro,
     eliminarLibro
 

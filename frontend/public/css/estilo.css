@@ -21,7 +21,15 @@ li {
     list-style: none;
 }
 
-/* ESTILOS PROPIOS */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: initial;
+}
+
+/* ESTILOS PROPIOS GENERALES*/
 
 body {
     font-family: 'Quicksand', sans-serif;
@@ -49,18 +57,26 @@ h5 {
     font-size: 18px;
 }
 
-section{
-    padding: 7% 5%;
-    padding-bottom: 0;
-    
+.navbar {
+    background: #f5f4e8 !important;
 }
 
-.texto-medium{
+section {
+    padding: 5% 5%;
+    padding-bottom: 0;
+
+}
+
+.texto-medium {
     font-size: 15px;
 }
 
-.texto-small{
+.texto-small {
     font-size: 12px;
+}
+
+.texto-blanco {
+    color: #ffffff;
 }
 
 p {
@@ -88,82 +104,141 @@ p {
     color: white;
     line-height: 2.5rem;
     border-radius: 3px;
+    text-align: center;
 }
 
 /* SECCIONES */
-.proximamente{
+.proximamente {
     margin-bottom: 8%;
 }
 
-.banner{
+.banner {
     background-color: #36352d;
+    padding: 3%;
 }
 
 /* CARDS LIBROS*/
-.card-libro{
+.card-libro {
     width: 23%;
     height: auto;
 }
 
-.contenedor-imagen{
+.contenedor-imagen {
     height: 380px;
 }
-.img-portada-libro{
+
+.img-portada-libro {
     width: 100%;
     height: 100%;
 }
 
-.btn-agregar-cart{
+.btn-agregar-cart {
+    opacity: 0;
     position: absolute;
     bottom: 23%;
     right: 10%;
     width: 80%;
-    background: #fdf7ac;
+    background: #faf6c5;
     color: #36352d;
     line-height: 2rem;
     border-radius: 3px;
+}
 
+.card-libro:hover .btn-agregar-cart {
+    opacity: 1;
+}
+
+.btn-agregar-cart:hover {
+    background: #f8efb2 !important;
+    color: #36352d !important;
+}
+
+/* CARD NOTICIAS */
+.card-noticia {
+    border: none;
+}
+
+.card-img-noticia {
+    max-height: 12rem;
+}
+
+.card-body-noticia {
+    background-color: #f5f4e8;
+    padding: 0;
 }
 
 /* NOSOTROS */
-.contenedor-nosotros{
+.contenedor-nosotros {
     padding-left: 6rem;
 }
 
-.texto-nosotros{
+.texto-nosotros {
     text-align: justify;
     padding-top: 4rem;
     line-height: 1.5rem;
 }
 
-/* BUSCADOR */
-.input-buscar{
+/* LIBROS */
+.container-filtros {
+    border: solid 1px #dbd8d8;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.filtros-titulo {
+    background-color: #efece3;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px 15px 30px;
+
+}
+
+.fila-filtros {
+    margin: 0;
+    padding: 30px 20px 30px 20px;
+}
+
+.filter-toggle {
+    color: #36352d;
+}
+
+.check-filtros {
     background-color: #f5f4e8;
 }
 
-.input-buscar:focus{
+#mostrar-menos-btn {
+    display: none;
+}
+
+/* BUSCADOR */
+.input-buscar {
+    background-color: #f5f4e8;
+}
+
+.input-buscar:focus {
     color: #212529;
     background-color: #f5f4e8;
     border-color: #212529;
     outline: 0;
-    box-shadow: 0 0 0 0rem rgba(13,110,253,.25);
+    box-shadow: 0 0 0 0rem rgba(13, 110, 253, .25);
 }
 
-.btn-buscar{
+.btn-buscar {
     background: #e5b88f;
     color: #36352d;
     line-height: 2.5rem;
     border-radius: 3px;
 }
 
-.btn-buscar:hover{
+.btn-buscar:hover {
     background: #dea876 !important;
     color: #36352d !important;
     line-height: 2.5rem;
     border-radius: 3px;
 }
 
-.contendor-resultados{
+.contendor-resultados {
     min-height: 150px;
 }
 

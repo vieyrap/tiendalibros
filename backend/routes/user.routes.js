@@ -4,7 +4,7 @@ import passport from 'passport'
 // import Cart from '../models/cart.js';
 import Libro from '../models/libro.js';
 
-//Vista Pagina de Registro
+//Vista de Registro
 router.get('/registrar', (req, res, next) => {
     res.render('users/registrar',{title: 'BookStore | Registrar', layout: 'layouts/layout'});
 });
@@ -16,7 +16,7 @@ router.post("/registrar",passport.authenticate("user-local-signup", {
     failureFlash: true,
 }));
 
-//Vista Pagina de Login
+//Vista de Login
 router.get("/login", (req, res, next) => {
     res.render("users/login",{title: 'Login', layout: 'layouts/layout'});
 });

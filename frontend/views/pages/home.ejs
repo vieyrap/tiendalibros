@@ -2,130 +2,86 @@
 <section class="hero">
     <div class="overlay-hero">
         <h1>La tienda de libros más grande de Buenos Aires</h1>
-        <button type="button" class="col-3 btn-comprar-ahora mt-4">Compra ya</button>
+        <a href="#tendencias" type="button" class="col-3 btn-comprar-ahora mt-4">Compra ya</a>
     </div>
 </section>
 <!-- SECCION TENDENCIAS -->
-<section class="tending-books">
+<section class="tending-books" id="tendencias">
     <h2 class="titulo-seccion mb-4">Tendencias</h2>
     <h3 class="titulo-seccion mb-4">Tendencias</h3>
-    <div class="row d-flex justify-content-between clearfix">
-        <% for(let i=4; i < 8; i++) { %>
-            <div class="col-3 card p-0 card-libro">
-                <div class="contenedor-imagen" data-mdb-ripple-color="light">
-                    <a href="/libros/<%= libros[i].isbn %>">
-                        <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"
-                            alt="<%= libros[i].titulo %>" />
-                            <a href="/agregar-carrito/<%= libros[i].isbn %>" class="btn btn-agregar-cart">Agregar al carrito</a>
-                    </a>
-                </div>
-                <div class="card-body pt-2">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2 texto-small">
-                            <%= libros[i].autor %>
-                        </p>
-                        <div>
-                            <i class="bi bi-bookmark"></i>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="texto-medium mb-0">
-                            <%= libros[i].titulo %>
-                        </p>
-                        <div>
-                            <p class="mb-0">$ <%= libros[i].precio %>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <% } %>
-    </div>
+    
+        <%- include('../partials/card.ejs',{start:4, end:8}) %>
+
 </section>
 
 <!-- SECCION OFERTAS ESPECIALES -->
 <section class="ofertas-especiales">
     <h2>Ofertas Especiales</h2>
-    <div class="d-flex flex-wrap justify-content-between">
-        <% for(let i=9; i < 13; i++) { %>
-            <div class="col-3 card card-libro">
-                <div class="contenedor-imagen" data-mdb-ripple-color="light">
-                    <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>" alt="Card image cap" />
-                    <a href="#!">
-                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
-                </div>
-                <div class="card-body pt-2">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2 texto-small">
-                            <%= libros[i].autor %>
-                        </p>
-                        <div>
-                            <i class="bi bi-bookmark"></i>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="texto-medium">
-                            <%= libros[i].titulo %>
-                        </p>
-                        <div>
-                            <p>$18</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-    </div>
+        <%- include('../partials/card.ejs',{start:9, end:13}) %>
+
 </section>
 
 <!-- SECCION PRÓXIMAMENTE -->
 <section class="proximamente">
     <h2>Próximamente</h2>
-    <div class="d-flex flex-wrap justify-content-between">
-        <% for(let i=14; i < 18; i++) { %>
-            <div class="col-3 card card-libro">
-                <div class="contenedor-imagen" data-mdb-ripple-color="light">
-                    <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>" alt="Card image cap" />
-                    <a href="#!">
-                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
-                </div>
-                <div class="card-body pt-2">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2 texto-small">
-                            <%= libros[i].autor %>
-                        </p>
-                        <div>
-                            <i class="bi bi-bookmark"></i>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="texto-medium">
-                            <%= libros[i].titulo %>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-    </div>
+    <%- include('../partials/card.ejs',{start:14, end:18}) %>
 </section>
 
 <!-- SECCION BANNER -->
-<section class="banner">
+<section class="banner text-center">
     <div>
-        <h1>BANNER</h1>
+        <p class="texto-small texto-blanco pb-3 font-italic">Opiniones de Clientes</p>
+        <h3 class="texto-blanco">"Una tienda muy interesante. Puedes encontrar todo lo que quieras."</h3>
+        <p class="texto-medium texto-blanco pt-4 font-italic">Norton Hely</p>
     </div>
 </section>
 
 <!-- SECCION NOTICIAS -->
 <section class="news">
     <h2>Noticias</h2>
+    <div class="row">
+        <div class="col-3">
+            <div class="card card-noticia">
+                <img src="/img/coleccion-biblioteca-antigua-naturaleza-muerta-sabiduria-generada-ia.jpg" class="card-img-top card-img-noticia" alt="Imagen de la noticia">
+                <div class="card-body card-body-noticia">
+                    <p class="card-text mb-1"><small class="text-muted">17 de Mayo, 2023</small></p>
+                    <h5 class="card-title lh-base">Los Non-fiction que necesitas leer en 2023</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card card-noticia">
+                <img src="/img/antiguo-libro-encuadernado-cuero-colocado-sobre-mesa-rustica-generado-ia.jpg" class="card-img-top card-img-noticia" alt="Imagen de la noticia">
+                <div class="card-body card-body-noticia">
+                    <p class="card-text mb-1"><small class="text-muted">1 de Mayo, 2023</small></p>
+                    <h5 class="card-title lh-base">Explora Europa a través de una colecion de pimera clase</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card card-noticia">
+                <img src="/img/pila-libros-texto-antiguos-estante-biblioteca-generado-ai.jpg" class="card-img-top card-img-noticia" alt="Imagen de la noticia">
+                <div class="card-body card-body-noticia">
+                    <p class="card-text mb-1"><small class="text-muted">7 de Abril, 2023</small></p>
+                    <h5 class="card-title lh-base">¿Que leer después de Heartstopper?</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card card-noticia">
+                <img src="/img/coleccion-libros-antiguos-estanteria-antigua-generada-ia.jpg" class="card-img-top card-img-noticia" alt="Imagen de la noticia">
+                <div class="card-body card-body-noticia">
+                    <p class="card-text mb-1"><small class="text-muted">13 de Marzo, 2023</small></p>
+                    <h5 class="card-title lh-base">Los mejores Libros de July</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- SECCION AYUDA -->
-<section class="news text-center">
-    <h1>¿Necesitas ayuda en decidirte?</h1>
-    <h3>Nuestro motor de recomendaciones te llevará a tus libros perfectos</h3>
-    <button class="col-3 btn-comprar-ahora">Encontrá tu libro</button>
+<section class="news text-center pb-5">
+    <h2 class="pt-5 pb-3">¿Te ayudamos a decidir?</h2>
+    <h4 class="pb-5">Nuestro motor de recomendaciones te llevará a tus libros perfectos</h4>
+    <a href="/libros" type="button" class="col-3 btn-comprar-ahora">Encontrá tu libro</a>
 </section>
