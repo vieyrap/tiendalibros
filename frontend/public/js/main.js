@@ -14,26 +14,30 @@ function mostrarCategorias() {
     for (let i = 0; i < visibleCountCategorias && i < categoriasData.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = `
-        <input class="form-check-input check-filtros" type="checkbox" name="categorias" value="${categoriasData[i]} id="${categoriasData[i]}">
-        ${categoriasData[i]}
+        <form action="/libros" method="post">
+            <input class="form-check-input check-filtros" onchange="form.submit()" type="checkbox" name="categorias" value="${categoriasData[i]}" id="${categoriasData[i]}">
+            ${categoriasData[i]}
+            </form>
         `;
         categoriasList.appendChild(li);
+        
     }
 
-  // Actualizar la visibilidad de los botones
-    mostrarMasCategoriasBtn.style.display =
-        visibleCountCategorias >= categoriasData.length ? "none" : "block";
-    mostrarMenosCategoriasBtn.style.display = visibleCountCategorias <= 10 ? "none" : "block";
+    // Actualizar la deshabilitación de los botones
+    mostrarMasCategoriasBtn.disabled = visibleCountCategorias >= categoriasData.length;
+    mostrarMenosCategoriasBtn.disabled = visibleCountCategorias <= 10;
 }
 
 mostrarMasCategoriasBtn.addEventListener("click", function () {
     visibleCountCategorias += 10;
     mostrarCategorias();
+    mostrarMasCategoriasBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
 mostrarMenosCategoriasBtn.addEventListener("click", function () {
     visibleCountCategorias -= 10;
     mostrarCategorias();
+    mostrarMenosCategoriasBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
 // Mostrar los primeros 10 elementos al cargar la página
@@ -55,26 +59,27 @@ function mostrarEditoriales() {
     for (let i = 0; i < visibleCountEditoriales && i < editorialesData.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = `
-        <input class="form-check-input check-filtros" type="checkbox" name="editoriales" value="${editorialesData[i]} id="${editorialesData[i]}">
+        <input class="form-check-input check-filtros" type="checkbox" name="editoriales" value="${editorialesData[i]}" id="${editorialesData[i]}">
         ${editorialesData[i]}
         `;
         editorialesList.appendChild(li);
     }
 
-  // Actualizar la visibilidad de los botones
-    mostrarMasEditorialesBtn.style.display =
-        visibleCountEditoriales >= editorialesData.length ? "none" : "block";
-    mostrarMenosEditorialesBtn.style.display = visibleCountEditoriales <= 10 ? "none" : "block";
+    // Actualizar la deshabilitación de los botones
+    mostrarMasEditorialesBtn.disabled = visibleCountEditoriales >= editorialesData.length;
+    mostrarMenosEditorialesBtn.disabled = visibleCountEditoriales <= 10;
 }
 
 mostrarMasEditorialesBtn.addEventListener("click", function () {
     visibleCountEditoriales += 10;
     mostrarEditoriales();
+    mostrarMasEditorialesBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
 mostrarMenosEditorialesBtn.addEventListener("click", function () {
     visibleCountEditoriales -= 10;
     mostrarEditoriales();
+    mostrarMenosEditorialesBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
 // Mostrar los primeros 10 elementos al cargar la página
@@ -96,26 +101,27 @@ function mostrarAutores() {
     for (let i = 0; i < visibleCountAutores && i < autoresData.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = `
-        <input class="form-check-input check-filtros" type="checkbox" name="autores" value="${autoresData[i]} id="${autoresData[i]}">
+        <input class="form-check-input check-filtros" type="checkbox" name="autores" value="${autoresData[i]}" id="${autoresData[i]}">
         ${autoresData[i]}
         `;
         autoresList.appendChild(li);
     }
 
-  // Actualizar la visibilidad de los botones
-    mostrarMasAutoresBtn.style.display =
-        visibleCountAutores >= autoresData.length ? "none" : "block";
-    mostrarMenosAutoresBtn.style.display = visibleCountAutores <= 10 ? "none" : "block";
+    // Actualizar la deshabilitación de los botones
+    mostrarMasAutoresBtn.disabled = visibleCountAutores >= autoresData.length;
+    mostrarMenosAutoresBtn.disabled = visibleCountAutores <= 10;
 }
 
 mostrarMasAutoresBtn.addEventListener("click", function () {
     visibleCountAutores += 10;
     mostrarAutores();
+    mostrarMasAutoresBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
 mostrarMenosAutoresBtn.addEventListener("click", function () {
     visibleCountAutores -= 10;
     mostrarAutores();
+    mostrarMenosAutoresBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
 // Mostrar los primeros 10 elementos al cargar la página

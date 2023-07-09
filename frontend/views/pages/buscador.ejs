@@ -10,14 +10,14 @@
     
 </section>
 
-<!-- INPUT BUSCADOR -->
+<!-- RESULTADOS -->
 <section>
     <% if (Object.keys(libros).length===0 || libros === undefined) { %>
-        <div class="row contendor-resultados">
+        <div class="row contenedor-resultados">
             No hay resultados
         </div>
         <% } else {%>
             <% console.log(libros); %>
-            <%- include('../partials/card.ejs',{start:0, end:libros.length, libros:libros}) %>
+            <%- include('../partials/card.ejs',{start:0, end:libros.length}) %>
                 <% } %>
 </section>

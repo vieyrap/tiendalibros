@@ -1,6 +1,7 @@
 import express from 'express';
 import libroController from '../controllers/libroController.js';
 
+import Libro from "../models/libro.js";
 const router = express.Router();
 
 //Vista Home | Tendencias, Ofertas, Proximamente
@@ -10,7 +11,8 @@ router.get('/',async (req,res)=>{
         res.render('pages/home.ejs',{
             title: 'Home', 
             layout: 'layouts/layout', 
-            libros:libros})
+            libros:libros
+        })
     } catch (error) {
         console.log(error.mensaje)
         res.status(500).json({mensaje:"Error interno del sistema"})
@@ -20,7 +22,10 @@ router.get('/',async (req,res)=>{
 //Vista Nosotros
 router.get('/nosotros',async (req,res)=>{
     try {
-        res.render('pages/nosotros.ejs',{title: 'Nosotros', layout: 'layouts/layout'})
+        res.render('pages/nosotros.ejs',{
+            title: 'Nosotros', 
+            layout: 'layouts/layout'
+        })
     } catch (error) {
         console.log(error.mensaje)
         res.status(500).json({mensaje:"Error interno del sistema"})
@@ -48,11 +53,38 @@ router.get('/libros',async (req,res)=>{
     }
 })
 
+router.post('/libros',async (req,res)=>{
+    try {
+        const editoriales = await libroController.obtenerEditoriales()
+        const categorias = await libroController.obtenerCategorias()
+        const autores = await libroController.obtenerAutores()      
+        const categoriasSeleccionadas = req.body.categorias;
+        console.log('HOla'+categoriasSeleccionadas)
+        
+        const librosfiltrados = await Libro.find({ categoria: { $in: categoriasSeleccionadas } });
+        res.render('pages/libros.ejs',{
+            title: 'Libros', 
+            layout: 'layouts/layout', 
+            libros:librosfiltrados,
+            editoriales:editoriales,
+            categorias:categorias,
+            autores:autores
+        })
+
+    } catch (error) {
+        console.log(error.mensaje)
+        res.status(500).json({mensaje:"Error interno del sistema"})
+    }
+})
+
 //Vista Buscador 
 router.get('/buscador',async (req,res)=>{
     try {
-        const libros = await libroController.obtenerLibros()
-        res.render('pages/buscador.ejs',{title: 'Buscador', layout: 'layouts/layout', libros:{}})
+        res.render('pages/buscador.ejs',{
+            title: 'Buscador', 
+            layout: 'layouts/layout', 
+            libros:{}
+        })
     } catch (error) {
         console.log(error.mensaje)
         res.status(500).json({mensaje:"Error interno del sistema"})
@@ -64,7 +96,11 @@ router.post('/buscador',async (req,res)=>{
     try {
         const busqueda = req.body.busqueda;
         const resultados = await libroController.buscarLibros(busqueda)
-        res.render('pages/buscador.ejs',{title: 'Buscador', layout: 'layouts/layout', libros:resultados})
+        res.render('pages/buscador.ejs',{
+            title: 'Buscador', 
+            layout: 'layouts/layout', 
+            libros:resultados
+        })
     } catch (error) {
         console.log(error.mensaje)
         res.status(500).json({mensaje:"Error interno del sistema"})

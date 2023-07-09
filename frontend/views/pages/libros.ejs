@@ -1,4 +1,7 @@
-
+<!-- SECCION HERO Libros -->
+<section>
+    <h2 class="text-center">Libros en catálogo</h2>
+</section>
 <!-- SECCION FILTROS -->
 <section class="pt-1">
     <div class="container-filtros">
@@ -11,27 +14,25 @@
             <div class="row fila-filtros">
                 <!-- FILTRO CATEGORIAS -->
                 <div class="col-md-3 ps-5">
-                    <div class="d-flex">
-                        <h5 class="pb-4"><strong> Categorias</strong></h5>
-                    </div>
+                    <h5 class="pb-4"><strong> Categorias</strong></h5>
                     <ul class="ps-0 m-0" id="categorias-list" data-categorias="<%= JSON.stringify(categorias) %>">
                         <% for (let i=0; i < 10; i++) { %>
-                            <li>
-                                <input class="form-check-input check-filtros" type="checkbox" name="categorias" value="<%= categorias[i] %>" id="<%= categorias[i] %>">
-                                <%= categorias[i] %>
-                            </li>
+                            <form action="/libros" method="post">
+                                <li>
+                                    <input class="form-check-input check-filtros" onchange="form.submit()" type="checkbox" name="categorias" value="<%= categorias[i] %>" id="<%= categorias[i] %>">
+                                    <%= categorias[i] %>
+                                </li>
+                            </form>
                         <% } %>
                     </ul>
-                    <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-primary" id="mostrar-mas-categorias-btn">Ver +</button>
-                        <button class="btn btn-primary"id="mostrar-menos-categorias-btn">Ver -</button>
+                    <div class="d-flex ps-3 mt-2">
+                        <button class="btn btn-primary me-2" id="mostrar-mas-categorias-btn">+</button>
+                        <button class="btn btn-primary"id="mostrar-menos-categorias-btn">-</button>
                     </div>
                 </div>
                 <!-- FILTRO EDITORIALES -->
                 <div class="col-md-3 ps-5">
-                    <div class="d-flex">
-                        <h5 class="pb-4"><strong> Editorial</strong></h5>
-                    </div>
+                    <h5 class="pb-4"><strong> Editorial</strong></h5>
                     <ul class="ps-0 m-0" id="editoriales-list" data-editoriales="<%= JSON.stringify(editoriales) %>">
                         <% for (let i=0; i < 10; i++) { %>
                             <li>
@@ -47,11 +48,7 @@
                 </div>
                 <!-- FILTRO AUTORES -->
                 <div class="col-md-3 ps-5">
-                    <div class="d-flex">
-                        <h5 class="pb-4"><strong> Autores</strong></h5>
-                        <button id="mostrar-mas-autores-btn">+</button>
-                        <button id="mostrar-menos-autores-btn">-</button>
-                    </div>
+                    <h5 class="pb-4"><strong> Autores</strong></h5>
                     <ul class="ps-0 m-0" id="autores-list" data-autores="<%= JSON.stringify(autores) %>">
                         <% for (let i=0; i < 10; i++) { %>
                             <li>
@@ -60,6 +57,10 @@
                             </li>
                         <% } %>
                     </ul>
+                    <div class="d-flex ps-3 mt-2">
+                        <button class="btn btn-primary me-2" id="mostrar-mas-autores-btn">+</button>
+                        <button class="btn btn-primary"id="mostrar-menos-autores-btn">-</button>
+                    </div>
                 </div>
                 <div class="col-md-3 ps-5">
                     <h5 class="pb-4"><strong>Precio</strong></h5>
@@ -82,5 +83,5 @@
 
 <!-- SECCION LISTADO LIBROS - Lazyload -->
 <section>
-    <%- include('../partials/card.ejs',{start:0, end:12}) %>
+    <%- include('../partials/card.ejs',{start:0, end:libros.length}) %>
 </section>
