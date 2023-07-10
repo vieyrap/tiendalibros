@@ -1,58 +1,54 @@
-<%- include('../partials/header.ejs') %>
-<%- include('../partials/nav.ejs') %>
+<div class="w-100">
+    <% if (libros) { %>
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-sm-7 col-md-7">
+                <ul class="list-group">
+                    <% for(let i=0; i < libros.length; i++) { %>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>
+                                <%= libros[i].item.titulo %>
+                            </strong>
+                            <span class="label label-success">
+                                <%= libros[i].cantidad %>
+                            </span>
+                            <span class="label label-success">$ <%= libros[i].precio %></span>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Accion
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Reducir 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Borrar todos</a></li>
+                                </ul>
+                            </div>
 
-<main>
-    <div class="w-100">
-        <% if (libros) { %>
-            <div class="row d-flex justify-content-center p-3">
-                <div class="col-sm-7 col-md-7">
-                    <ul class="list-group">
-                        <% for(let i=0; i < libros.length; i++) { %>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <strong><%= libros[i].item.titulo %></strong>
-                                <span class="label label-success"><%= libros[i].cantidad %></span>
-                                <span class="label label-success">$ <%= libros[i].precio %></span>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Accion
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Reducir 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Borrar todos</a></li>
-                                    </ul>
-                                </div>
-
-                            </li>
+                        </li>
                         <% } %>
-                    </ul>
-                </div>
+                </ul>
             </div>
+        </div>
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <strong>Cantidad Total Libros: <%= cantidadTotal %></strong>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <strong>Precio Total: <%= precioTotal %></strong>
+            </div>
+        </div>
+        <hr>
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <button type="button" class="btn btn-success">Checkout</button>
+            </div>
+        </div>
+        <% } else { %>
             <div class="row d-flex justify-content-center p-3">
                 <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                    <strong>Cantidad Total Libros: <%= cantidadTotal %></strong>
+                    <h3>No hay ningun libro en el carrito</h3>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center p-3">
-                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                    <strong>Precio Total: <%= precioTotal %></strong>
-                </div>
-            </div>
-            <hr>
-            <div class="row d-flex justify-content-center p-3">
-                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                    <button type="button" class="btn btn-success">Checkout</button>
-                </div>
-            </div>
-            <% } else { %>
-                <div class="row d-flex justify-content-center p-3">
-                    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                        <h2>No hay ningun libro en el carrito</h2>
-                    </div>
-                </div>
-                <% } %>
-    </div>
-</main>
-
-<%- include('../partials/footer.ejs') %>
+            <% } %>
+</div>

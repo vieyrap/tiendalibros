@@ -1,15 +1,23 @@
-<section>
-    <h1 class="text-center mt-5 mb-3">Login</h1>
-    <div class="container w-25">
-        <form action="/login" method="post">
-            <div class="form-group px-0">
-                <input type="email" name="email" class="form-control" placeholder="Ingrese su Email">
+<section class="pb-5 mb-5">
+    <div>
+        <h2 class="text-center mt-0 mb-5">Login</h2>
+    </div>
+    <div class="row w-50 fomulario-login"> 
+        <!--<form accept-charset="utf-8" method="post" action="">-->
+        <form id="loginUser" action="/login" method="post">
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control input-email" name="email" id="user_id" placeholder="Ingresa tu email" >
             </div>
-            <div class="form-group px-0">
-                <input type="password" name="password" class="form-control" placeholder="password   ">
+            <div class="form-group ">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control input-password" name="password" id="password" placeholder="Password">
             </div>
-            <a class="float-right mt-0 mb-3 text-danger" href="/recuperar">Olvidaste tu contraseña?</a>
-            <button type="submit" class="btn btn-danger btn-block">Ingrese</button>
+            <div class="text-center texto-medium olvidaste-pws">
+                <a href="/recuperar" id="open_forgotPassword">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="btn btn-ingresar w-100">Ingresar</button>
         </form>
+        <div class="text-center">¿Aún no tienes cuenta? <a href="/registrar"><strong>Crea una</strong></a></div>
     </div>
 </section>

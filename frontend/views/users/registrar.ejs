@@ -1,19 +1,29 @@
-<section>
-    <div class="col-9">
-        <div class="container p-3 w-50">
-            <h1 class="text-center mt-5 mb-3">Resgistar</h1>
-                <form action="/registrar" method="post">
-                    <div class="form-group px-0">
-                        <input type="text" name="name" class="form-control" placeholder="Ingrese su nombre">
-                    </div>
-                    <div class="form-group px-0">
-                        <input type="email" name="email" class="form-control" placeholder="Ingrese su Email">
-                    </div>
-                    <div class="form-group px-0">
-                        <input type="password" name="password" class="form-control" placeholder="Ingrese su password">
-                    </div>
-                    <button type="submit" class="btn btn-danger btn-block">Registrar</button>
-                </form>
-        </div>
+<section class="pb-5 mb-5">
+    <div>
+        <h2 class="text-center mt-0 mb-3">Convierte en Miembro</h2>
+        <h5 class="text-center mt-0 mb-5" >Registrate para desbloquear ofertas, descuentos y funcionalidades</h5>
+    </div>
+    <div class="row w-50 fomulario-login"> 
+        <!--<form accept-charset="utf-8" method="post" action="">-->
+        <form id="loginUser" action="/login" method="post">
+            <div class="form-group">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="nombre" class="form-control input-email" name="nombre" id="nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="apellido" class="form-control input-email" name="apellid" id="apeliido" >
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control input-email" name="email" id="email" >
+            </div>
+            <div class="form-group mb-5">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control input-password" name="password" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-ingresar w-100">Registrarse</button>
+        </form>
+        <div class="text-center">¿Ya tienes cuenta? <a href="/login"><strong>Ingresa</strong></a></div>
     </div>
 </section>
