@@ -179,6 +179,19 @@ p {
 }
 
 /* LIBROS */
+.imagen-libros{
+    background-image: url('/img/montones-literatura-antigua-biblioteca-antigua-generada-ia.jpg');
+    height: 200px;
+    border-radius: 15px;
+    background-size: contain;
+}
+
+.mask{
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    color: #fdf7ac;
+}
+
 .container-filtros {
     border: solid 1px #dbd8d8;
     border-radius: 5px;
@@ -192,6 +205,14 @@ p {
     justify-content: space-between;
     padding: 15px 30px 15px 30px;
 
+}
+
+[data-bs-toggle="collapse"].collapsed .if-not-collapsed {
+    display: none;
+}
+
+[data-bs-toggle="collapse"]:not(.collapsed) .if-collapsed {
+    display: none;
 }
 
 .fila-filtros {

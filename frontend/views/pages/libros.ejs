@@ -1,6 +1,14 @@
 <!-- SECCION HERO Libros -->
-<section>
-    <h2 class="text-center">Libros en catálogo</h2>
+<section class="p-5 pt-3 pb-3">
+    <!-- Background image -->
+    <div class="text-center bg-image imagen-libros">
+        <div class="h-100 mask">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                    <h2 class="mb-3">Libros en catálogo</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Background image -->
 </section>
 <!-- SECCION FILTROS -->
 <section class="pt-1">
@@ -8,7 +16,10 @@
         <div class="filtros-titulo">
             <h6 class="mb-0">Filtrar por:</h6>
             <a class="filter-toggle text-medium" type="button" data-bs-toggle="collapse"
-                data-bs-target="#filterContent">X Cerrar</a>
+                data-bs-target="#filterContent">
+                <span class="if-collapsed">Abrir</span>
+                <span class="if-not-collapsed">Cerrar</span>
+            </a>
         </div>
         <div class="filter-content collapse show" id="filterContent">
             <div class="row fila-filtros">
@@ -17,17 +28,16 @@
                     <h5 class="pb-4"><strong> Categorias</strong></h5>
                     <ul class="ps-0 m-0" id="categorias-list" data-categorias="<%= JSON.stringify(categorias) %>">
                         <% for (let i=0; i < 10; i++) { %>
-                            <form action="/libros" method="post">
-                                <li>
-                                    <input class="form-check-input check-filtros" onchange="form.submit()" type="checkbox" name="categorias" value="<%= categorias[i] %>" id="<%= categorias[i] %>">
-                                    <%= categorias[i] %>
-                                </li>
-                            </form>
-                        <% } %>
+                            <li>
+                                <input class="form-check-input check-filtros" type="checkbox" name="categorias"
+                                    value="<%= categorias[i] %>" id="<%= categorias[i] %>">
+                                <%= categorias[i] %>
+                            </li>
+                            <% } %>
                     </ul>
                     <div class="d-flex ps-3 mt-2">
                         <button class="btn btn-primary me-2" id="mostrar-mas-categorias-btn">+</button>
-                        <button class="btn btn-primary"id="mostrar-menos-categorias-btn">-</button>
+                        <button class="btn btn-primary" id="mostrar-menos-categorias-btn">-</button>
                     </div>
                 </div>
                 <!-- FILTRO EDITORIALES -->
@@ -36,14 +46,15 @@
                     <ul class="ps-0 m-0" id="editoriales-list" data-editoriales="<%= JSON.stringify(editoriales) %>">
                         <% for (let i=0; i < 10; i++) { %>
                             <li>
-                                <input class="form-check-input check-filtros" type="checkbox" name="editoriales" value="<%= editoriales[i] %>" id="<%= editoriales[i] %>">
+                                <input class="form-check-input check-filtros" type="checkbox" name="editoriales"
+                                    value="<%= editoriales[i] %>" id="<%= editoriales[i] %>">
                                 <%= editoriales[i] %>
                             </li>
-                        <% } %>
+                            <% } %>
                     </ul>
                     <div class="d-flex ps-3 mt-2">
                         <button class="btn btn-primary me-2" id="mostrar-mas-editoriales-btn">+</button>
-                        <button class="btn btn-primary"id="mostrar-menos-editoriales-btn">-</button>
+                        <button class="btn btn-primary" id="mostrar-menos-editoriales-btn">-</button>
                     </div>
                 </div>
                 <!-- FILTRO AUTORES -->
@@ -52,14 +63,15 @@
                     <ul class="ps-0 m-0" id="autores-list" data-autores="<%= JSON.stringify(autores) %>">
                         <% for (let i=0; i < 10; i++) { %>
                             <li>
-                                <input class="form-check-input check-filtros" type="checkbox" name="autores" value="<%= autores[i] %>" id="<%= autores[i] %>">
+                                <input class="form-check-input check-filtros" type="checkbox" name="autores"
+                                    value="<%= autores[i] %>" id="<%= autores[i] %>">
                                 <%= autores[i] %>
                             </li>
-                        <% } %>
+                            <% } %>
                     </ul>
                     <div class="d-flex ps-3 mt-2">
                         <button class="btn btn-primary me-2" id="mostrar-mas-autores-btn">+</button>
-                        <button class="btn btn-primary"id="mostrar-menos-autores-btn">-</button>
+                        <button class="btn btn-primary" id="mostrar-menos-autores-btn">-</button>
                     </div>
                 </div>
                 <div class="col-md-3 ps-5">
@@ -82,6 +94,6 @@
 </section>
 
 <!-- SECCION LISTADO LIBROS - Lazyload -->
-<section>
+<section data-libros="<%= JSON.stringify(libros) %>">
     <%- include('../partials/card.ejs',{start:0, end:libros.length}) %>
 </section>

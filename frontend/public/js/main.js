@@ -14,10 +14,8 @@ function mostrarCategorias() {
     for (let i = 0; i < visibleCountCategorias && i < categoriasData.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = `
-        <form action="/libros" method="post">
-            <input class="form-check-input check-filtros" onchange="form.submit()" type="checkbox" name="categorias" value="${categoriasData[i]}" id="${categoriasData[i]}">
+            <input class="form-check-input check-filtros" type="checkbox" onchange="filtrarLibros()" name="categorias" value="${categoriasData[i]}" id="${categoriasData[i]}">
             ${categoriasData[i]}
-            </form>
         `;
         categoriasList.appendChild(li);
         
@@ -40,7 +38,6 @@ mostrarMenosCategoriasBtn.addEventListener("click", function () {
     mostrarMenosCategoriasBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
-// Mostrar los primeros 10 elementos al cargar la página
 mostrarCategorias();
 
 //FILTRO EDITORIALES
@@ -59,7 +56,7 @@ function mostrarEditoriales() {
     for (let i = 0; i < visibleCountEditoriales && i < editorialesData.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = `
-        <input class="form-check-input check-filtros" type="checkbox" name="editoriales" value="${editorialesData[i]}" id="${editorialesData[i]}">
+        <input class="form-check-input check-filtros" type="checkbox" onchange="filtrarLibros()" name="editoriales" value="${editorialesData[i]}" id="${editorialesData[i]}">
         ${editorialesData[i]}
         `;
         editorialesList.appendChild(li);
@@ -82,7 +79,6 @@ mostrarMenosEditorialesBtn.addEventListener("click", function () {
     mostrarMenosEditorialesBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
-// Mostrar los primeros 10 elementos al cargar la página
 mostrarEditoriales();
 
 //FILTRO AUTORES
@@ -101,7 +97,7 @@ function mostrarAutores() {
     for (let i = 0; i < visibleCountAutores && i < autoresData.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = `
-        <input class="form-check-input check-filtros" type="checkbox" name="autores" value="${autoresData[i]}" id="${autoresData[i]}">
+        <input class="form-check-input check-filtros" type="checkbox" onchange="filtrarLibros()" name="autores" value="${autoresData[i]}" id="${autoresData[i]}">
         ${autoresData[i]}
         `;
         autoresList.appendChild(li);
@@ -124,5 +120,66 @@ mostrarMenosAutoresBtn.addEventListener("click", function () {
     mostrarMenosAutoresBtn.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
-// Mostrar los primeros 10 elementos al cargar la página
 mostrarAutores();
+
+function filtrarLibros() {
+    var categoriasSeleccionadas = obtenerCheckboxesSeleccionados('categorias');
+    var editorialesSeleccionadas = obtenerCheckboxesSeleccionados('editoriales');
+    var autoresSeleccionados = obtenerCheckboxesSeleccionados('autores');
+
+    console.log('Categorías seleccionadas:', categoriasSeleccionadas);
+    console.log('Editoriales seleccionadas:', editorialesSeleccionadas);
+    console.log('Autores seleccionados:', autoresSeleccionados);
+
+    // Verificar si todas las categorías, editoriales y autores están vacíos
+    var todasLasCategoriasVacias = categoriasSeleccionadas.length === 0;
+    var todasLasEditorialesVacias = editorialesSeleccionadas.length === 0;
+    var todosLosAutoresVacios = autoresSeleccionados.length === 0;
+
+    if (todasLasCategoriasVacias && todasLasEditorialesVacias && todosLosAutoresVacios) {
+      // Mostrar todos los libros
+        var libros = document.getElementsByName('tarjeta-libro');
+        for (var i = 0; i < libros.length; i++) {
+            var libro = libros[i];
+            libro.style.display = 'flex';
+        }
+      return; // Salir de la función para evitar el filtrado adicional
+    }
+
+    // Continuar con el filtrado de libros
+    var libros = document.getElementsByName('tarjeta-libro');
+    for (var i = 0; i < libros.length; i++) {
+        var libro = libros[i];
+        var filtroCategoria = limpiarTexto(libro.getAttribute('data-categoria'));
+        var filtroEditorial = limpiarTexto(libro.getAttribute('data-editorial'));
+        var filtroAutor = limpiarTexto(libro.getAttribute('data-autor'));
+
+        var mostrarLibro =
+            categoriasSeleccionadas.includes(filtroCategoria) ||
+            editorialesSeleccionadas.includes(filtroEditorial) ||
+            autoresSeleccionados.includes(filtroAutor);
+
+        if (mostrarLibro) {
+            libro.style.display = 'flex'; // Mostrar el libro
+        } else {
+            libro.style.display = 'none'; // Ocultar el libro
+        }
+    }
+}
+
+function obtenerCheckboxesSeleccionados(nombreCategoría) {
+    var checkboxesSeleccionados = [];
+    var checkboxes = document.getElementsByName(nombreCategoría);  
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            var valorCheckbox = limpiarTexto(checkboxes[i].value);
+            checkboxesSeleccionados.push(valorCheckbox);
+        }
+    }
+    return checkboxesSeleccionados;
+}
+
+function limpiarTexto(texto) {
+    // Eliminar espacios en blanco adicionales y caracteres especiales
+    return texto.trim().replace(/[^\w\s]/gi, '');
+}
