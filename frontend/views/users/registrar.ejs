@@ -4,15 +4,16 @@
         <h5 class="text-center mt-0 mb-5" >Registrate para desbloquear ofertas, descuentos y funcionalidades</h5>
     </div>
     <div class="row w-50 fomulario-login"> 
+        <%- include('../partials/mensajes.ejs') %>
         <!--<form accept-charset="utf-8" method="post" action="">-->
-        <form id="loginUser" action="/login" method="post">
+        <form id="loginUser" action="/registrar" method="post">
             <div class="form-group">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="nombre" class="form-control input-email" name="nombre" id="nombre">
             </div>
             <div class="form-group">
                 <label for="apellido" class="form-label">Apellido</label>
-                <input type="apellido" class="form-control input-email" name="apellid" id="apeliido" >
+                <input type="apellido" class="form-control input-email" name="apellido" id="apeliido" >
             </div>
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>

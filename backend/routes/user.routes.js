@@ -1,20 +1,45 @@
 import express from 'express'
-const router = express.Router()
-import passport from 'passport'
+import passport from 'passport';
 // import Cart from '../models/cart.js';
+import User from '../models/user.js'
 import Libro from '../models/libro.js';
+
+const router = express.Router()
+
+// Middleware para verificar la autenticación del usuario
+function isAuthenticatedUser(req, res) {
+    if (req.isAuthenticated() && req.user instanceof User) {
+        return next();
+    }
+    req.flash('error_msg','Debes esta iniciar sesion para acceder')
+    return res.redirect('/login');
+}
 
 //Vista de Registro
 router.get('/registrar', (req, res, next) => {
     res.render('users/registrar',{title: 'BookStore | Registrar', layout: 'layouts/layout'});
 });
 
-//Obtener datos de Registro
-router.post("/registrar",passport.authenticate("user-local-signup", {
-    successRedirect: '/favoritos',
-    failureRedirect: '/registrar',
-    failureFlash: true,
-}));
+// Ruta de registro para usuarios
+router.post('/registrar', (req, res) => {
+    const { nombre, apellido, email, password } = req.body;
+    User.register(new User({
+        nombre,
+        apellido,
+        email
+    }),
+    password,
+    (err, user) => {
+        if (err) {
+            // Manejo de errores de registro
+            req.flash('error_msg','Error',err)
+            res.redirect('/registrar')
+        }
+        // Registro exitoso
+        req.flash('success_msg','Cuenta creada')
+        res.redirect('/login');
+    });
+});
 
 //Vista de Login
 router.get("/login", (req, res, next) => {
@@ -22,20 +47,20 @@ router.get("/login", (req, res, next) => {
 });
 
 //Obtener datos de login
-router.post("/login",passport.authenticate("user-local-signin", {
-    successRedirect: "/favoritos",
-    failureRedirect: "/login",
-    failureFlash: true,
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/favoritos',
+    failureRedirect: '/login',
+    failureFlash: true
 }));
 
 //Cerrar sesion
 router.get('/logout', function(req, res, next) {
     req.logout(function(err) {
         if (err) { return next(err); }
-        req.flash('success_msg','Se cerro la sesion')
         res.redirect('/login');
     });
 });
+
 //Recuperar contraseña
 router.get('/recuperar',(req,res,next)=>{
     res.render('users/recuperar.ejs',{
@@ -44,7 +69,7 @@ router.get('/recuperar',(req,res,next)=>{
 })
 
 //Favortios
-router.get('/favoritos',(req,res,next)=>{
+router.get('/favoritos',isAuthenticatedUser,(req,res,next)=>{
     res.render('users/favoritos.ejs',{
         title: 'Favoritos', 
         layout: 'layouts/layout'})
@@ -92,18 +117,10 @@ router.get('/agregar-carrito/:isbn',async (req,res)=>{
 })
 
 //Checkout
-router.get('/checkout',isAuthenticated,(req,res,next)=>{
+router.get('/checkout',(req,res,next)=>{
     res.render('users/checkout.ejs')
 })
 
-function isAuthenticated(req, res, next) {
-    console.log(req)
-    if(req.isAuthenticated()) {
-        return next();
-    }
-    req.flash('error_msg','Por favor, logueate para ver la pagina')
-    res.redirect('/login')
-}
 
 
 export default router

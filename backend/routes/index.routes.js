@@ -53,30 +53,6 @@ router.get('/libros',async (req,res)=>{
     }
 })
 
-router.post('/libros',async (req,res)=>{
-    try {
-        const editoriales = await libroController.obtenerEditoriales()
-        const categorias = await libroController.obtenerCategorias()
-        const autores = await libroController.obtenerAutores()      
-        const categoriasSeleccionadas = req.body.categorias;
-        console.log('HOla'+categoriasSeleccionadas)
-        
-        const librosfiltrados = await Libro.find({ categoria: { $in: categoriasSeleccionadas } });
-        res.render('pages/libros.ejs',{
-            title: 'Libros', 
-            layout: 'layouts/layout', 
-            libros:librosfiltrados,
-            editoriales:editoriales,
-            categorias:categorias,
-            autores:autores
-        })
-
-    } catch (error) {
-        console.log(error.mensaje)
-        res.status(500).json({mensaje:"Error interno del sistema"})
-    }
-})
-
 //Vista Buscador 
 router.get('/buscador',async (req,res)=>{
     try {

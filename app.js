@@ -4,6 +4,8 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import morgan from "morgan"
 import session from 'express-session';
+import passport from 'passport';
+import './backend/config/passport.js';
 import expressEjsLayouts from 'express-ejs-layouts';
 import configureFlash from './backend/config/flash.js'
 import connectDB from './backend/config/db.js';
@@ -42,6 +44,20 @@ app.use(session({
     saveUninitialized: false,
 }));
 
+//Passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+//Variables globales
+app.use(function (req, res,next){
+    res.locals.currentUser = req.user;
+    next();
+})
+
+// Configuración y middleware de flash
+configureFlash(app);
+
 // Rutas Generales
 app.use(indexRouter);
 
@@ -51,11 +67,13 @@ app.use(userRouter);
 // Rutas Backend
 app.use('/admin', dashboardRouter);
 
+//Cualquier url no definida envia este mensaje
+app.get('/*', (req,res)=>{
+    res.status(404).json({mensaje:'La pagina no funciona'})
+})//(http://localhost:3030/pedro)
+
 // Conexión a la base de datos
 connectDB();
-
-// Configuración y middleware de flash
-configureFlash(app);
 
 // Puerto y inicio del servidor
 const port = process.env.PORT || 3000;
