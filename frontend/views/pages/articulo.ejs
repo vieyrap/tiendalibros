@@ -1,15 +1,22 @@
 <section class="pt-0">
     <div class="row gx-2">
-        <div class="col-6">
+        <div class="col-7 d-flex justify-content-center p-4">
             <img src="<%= libro.imagen %>" class="img-fluid" alt="<%= libro.titulo %>">
         </div>
-        <div class="col-6 align-self-center contenedor-nosotros">
-            <h1 class="titulo-nosotros">Nostros</h1>
-            <div class="texto-nosotros">
+        <div class="col-5 align-self-center pb-3">
+            <div class="d-flex justify-content-between">
+                <h3 class="mb-0">
+                    <%= libro.titulo %>
+                </h3>
+                <div>
+                    <p class="text-medium mb-0"><strong>$ <%= libro.precio %></strong></p>
+                </div>
+            </div>
+            <h6><%= libro.autor %></h6>
+            <div class="pt-4">
                 <p><%= libro.resumen %></p>
             </div>
-            
-            <a href="/agregar-carrito/<%= libros[i].isbn %>" class="btn btn-agregar-cart">Agregar al carrito</a>
+            <a href="/agregar-carrito/<%= libro.isbn %>" type="button" class="w-100 btn-comprar-ahora mt-4">Agregar al carrito <strong><%= libro.precio %></strong></a>
         </div>
     </div>
 </section>
