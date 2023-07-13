@@ -9,6 +9,7 @@ import './backend/config/passport.js';
 import expressEjsLayouts from 'express-ejs-layouts';
 import configureFlash from './backend/config/flash.js'
 import connectDB from './backend/config/db.js';
+import MongoStore from 'connect-mongo'
 import indexRouter from './backend/routes/index.routes.js';
 import userRouter from './backend/routes/user.routes.js'
 import adminRouter from './backend/routes/admin.routes.js';
@@ -42,6 +43,8 @@ app.use(session({
     secret: 'mysecret',
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://vieyrap:Hola1234@cluster0.uxsur.mongodb.net/?retryWrites=true&w=majority'}),
+    cookie: {maxAge: 180 * 60 * 1000}//3h
 }));
 
 //Passport
