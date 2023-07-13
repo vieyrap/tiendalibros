@@ -1,6 +1,6 @@
 # Tienda de Libros Online
 
-Este programa es una tienda de libros online con funcionalidad de carrito de compras. Solo los usuarios logeados pueden acceder al carrito y guardar libros como favoritos.
+Este programa es una tienda de libros online con funcionalidad de carrito de compras. Solo los usuarios logueados pueden acceder al carrito y guardar libros como favoritos.
 
 ## Características principales
 
