@@ -13,6 +13,22 @@ function cart(oldCart){
         this.cantidadTotal++
         this.precioTotal += storedItem.item.precio
     }
+
+    this.reduceByOne= function(id) {
+        this.items[id].cantidad--
+        this.items[id].precio -= this.items[id].item.precio
+        
+        this.cantidadTotal--
+        const restaPrecioTotal = this.precioTotal - this.items[id].item.precio
+        this.precioTotal = restaPrecioTotal.toFixed(2)
+
+        if(this.items[id].cantidad <= 0){
+            delete this.items[id]
+        }
+    }
+
+    
+
     this.generateArray = function(){
         var arr = []
         for(var id in this.items){

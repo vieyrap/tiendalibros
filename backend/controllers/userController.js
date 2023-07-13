@@ -8,7 +8,6 @@ async function agregarCarrito (cartSession, isbn) {
         const libro = await Libro.findOne({ isbn: isbn });
         const cart = new Cart(cartSession ? cartSession : {});
         cart.add(libro, libro.id);
-        console.log(cart)
         return cart
 
     } catch (error) {

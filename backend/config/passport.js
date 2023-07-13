@@ -4,7 +4,7 @@ import User from '../models/user.js';
 import Admin from '../models/admin.js';
 
 passport.use('user-local', new LocalStrategy({usernameField:'email'},User.authenticate()))
-passport.use('admin-local', new LocalStrategy(Admin.authenticate()));
+passport.use('admin-local', new LocalStrategy({usernameField:'email'},Admin.authenticate()));
 
 passport.serializeUser((user, done) => {
   if (user instanceof User) {
@@ -12,7 +12,7 @@ passport.serializeUser((user, done) => {
   } else if (user instanceof Admin) {
     done(null, { modelName: 'Admin', id: user.id });
   } else {
-    done(new Error('Invalid user model'));
+    done(new Error('Modelo de usuario invalido'));
   }
 });
 
@@ -35,6 +35,6 @@ passport.deserializeUser((serializedUser, done) => {
           done(err, null);
         });
     } else {
-      done(new Error('Invalid user model'));
+      done(new Error('Modelo de usuario invalido'));
     }
   });

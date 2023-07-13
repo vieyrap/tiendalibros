@@ -2,8 +2,8 @@ import express from 'express'
 import passport from 'passport';
 import Cart from '../models/cart.js';
 import User from '../models/user.js'
-import Libro from '../models/libro.js';
 import userController from '../controllers/userController.js';
+import cart from '../models/cart.js';
 
 const router = express.Router()
 
@@ -84,7 +84,6 @@ router.get('/carrito-compras',isAuthenticatedUser,async(req,res)=>{
         
         const cart = await new Cart(req.session.cart)       
         const libros = Object.values(cart.items);//Obtengo array de libros
-        console.log(cart)
 
         res.render('users/carrito-compras',{
             title:'Carrito de Compras', 
@@ -105,14 +104,35 @@ router.get('/agregar-carrito/:isbn', isAuthenticatedUser, async (req, res) => {
         const refererURL = req.headers.referer;// Obtener la URL de referencia del encabezado de la solicitud
         res.redirect(req.headers.referer + '#prueba-'+req.params.isbn);
         } catch (error) {
-        console.log(error.message);
         res.status(500).json({ mensaje: "Error interno del sistema" });
     }
 });
 
+router.get('/reducir/:id', async (req, res) =>{
+    try {
+        const libroId = req.params.id
+        console.log(libroId)
+        const cart = await new Cart(req.session.cart ? req.session.cart : {})
+        cart.reduceByOne(libroId)
+
+        if(cart.cantidadTotal === 0){
+            req.session.cart = undefined
+        } else{
+            req.session.cart = cart
+        }
+
+        res.redirect('/carrito-compras')
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error interno del sistema" + error });
+    }
+    
+})
+
 //Checkout
 router.get('/checkout', isAuthenticatedUser,(req,res,next)=>{
-    res.render('users/checkout.ejs')
+    res.render('users/checkout.ejs',{
+        title:'Checkout', 
+        layout: 'layouts/layout'})
 })
 
 export default router
