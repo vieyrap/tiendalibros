@@ -1,6 +1,7 @@
 import express from 'express'
 import passport from 'passport';
 import Cart from '../models/cart.js';
+import Libro from "../models/libro.js";
 import User from '../models/user.js'
 import userController from '../controllers/userController.js';
 import cart from '../models/cart.js';
@@ -43,7 +44,7 @@ router.get("/login", (req, res, next) => {
 
 //Obtener datos de login
 router.post('/login', passport.authenticate('user-local', {
-    successRedirect: '/favoritos',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
 }));
@@ -100,7 +101,10 @@ router.get('/carrito-compras',isAuthenticatedUser,async(req,res)=>{
 //Agregar carrito
 router.get('/agregar-carrito/:isbn', isAuthenticatedUser, async (req, res) => {
     try {
-        req.session.cart = await userController.agregarCarrito(req.session.cart,req.params.isbn);
+        const libro = await Libro.findOne({isbn:req.params.isbn})
+        const cart = new Cart(req.session.cart ? req.session.cart : {})
+        cart.add(libro, libro.id)
+        req.session.cart = cart
         const refererURL = req.headers.referer;// Obtener la URL de referencia del encabezado de la solicitud
         res.redirect(req.headers.referer + '#prueba-'+req.params.isbn);
         } catch (error) {
@@ -114,13 +118,31 @@ router.get('/reducir/:id', async (req, res) =>{
         console.log(libroId)
         const cart = await new Cart(req.session.cart ? req.session.cart : {})
         cart.reduceByOne(libroId)
-
+        req.session.cart = cart
         if(cart.cantidadTotal === 0){
             req.session.cart = undefined
         } else{
             req.session.cart = cart
         }
 
+        res.redirect('/carrito-compras')
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error interno del sistema" + error });
+    }
+    
+})
+
+router.get('/eliminar/:id', async (req, res) =>{
+    try {
+        const libroId = req.params.id
+        const cart = await new Cart(req.session.cart ? req.session.cart : {})
+        cart.eliminarItem(libroId)
+        req.session.cart = cart
+        if(cart.cantidadTotal === 0){
+            req.session.cart = undefined
+        } else{
+            req.session.cart = cart
+        }
         res.redirect('/carrito-compras')
     } catch (error) {
         res.status(500).json({ mensaje: "Error interno del sistema" + error });

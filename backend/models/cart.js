@@ -26,8 +26,13 @@ function cart(oldCart){
             delete this.items[id]
         }
     }
-
-    
+    this.eliminarItem = function(id) {
+        this.cantidadTotal -= this.items[id].cantidad
+        this.precioTotal = this.precioTotal - this.items[id].precio
+        this.precioTotal = this.precioTotal.toFixed(2)
+        //this.precioTotal = restaPrecioTotal.toFixed(2)
+        delete this.items[id]
+    }
 
     this.generateArray = function(){
         var arr = []
