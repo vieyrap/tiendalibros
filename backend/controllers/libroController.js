@@ -44,21 +44,6 @@ async function obtenerAutores() {
     }
 };
 
-// Función para obtener un libro por su ID
-async function obtenerLibroPorId(req, res) {
-    try {
-        const { id } = req.params;
-        const libro = await Libro.findById(id);
-        if (libro) {
-        res.json(libro);
-        } else {
-        res.status(404).json({ message: 'Libro no encontrado' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener el libro', error });
-    }
-}
-
 async function buscarLibros (busqueda) { 
     try {
       // Realizar la búsqueda en la base de datos
@@ -123,7 +108,6 @@ export default{
     obtenerCategorias,
     obtenerEditoriales,
     buscarLibros,
-    obtenerLibroPorId,
     crearLibro,
     actualizarLibro,
     eliminarLibro

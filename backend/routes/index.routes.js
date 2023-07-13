@@ -48,10 +48,22 @@ router.get('/libros',async (req,res)=>{
             autores:autores
         })
     } catch (error) {
-        console.log(error.mensaje)
         res.status(500).json({mensaje:"Error interno del sistema"})
     }
 })
+
+router.get('/libros/:isbn'), async(req,res)=>{
+    try {
+        const libro = await Libro.findOne({ isbn: req.params });
+        res.render('pages/articulo.ejs',{
+            title: libro.titulo, 
+            layout: 'layouts/layout', 
+            libro:libro
+        })
+    } catch (error) {
+        res.status(500).json({mensaje:"Error interno del sistema"})
+    }
+}
 
 //Vista Buscador 
 router.get('/buscador',async (req,res)=>{

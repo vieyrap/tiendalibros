@@ -1,0 +1,15 @@
+<section class="pt-0">
+    <div class="row gx-2">
+        <div class="col-6">
+            <img src="<%= libro.imagen %>" class="img-fluid" alt="<%= libro.titulo %>">
+        </div>
+        <div class="col-6 align-self-center contenedor-nosotros">
+            <h1 class="titulo-nosotros">Nostros</h1>
+            <div class="texto-nosotros">
+                <p><%= libro.resumen %></p>
+            </div>
+            
+            <a href="/agregar-carrito/<%= libros[i].isbn %>" class="btn btn-agregar-cart">Agregar al carrito</a>
+        </div>
+    </div>
+</section>
