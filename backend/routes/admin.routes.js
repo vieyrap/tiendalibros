@@ -4,8 +4,18 @@ import Admin from '../models/admin.js'
 
 const router = express.Router();
 
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard', { title: 'BookStore | Dashboard', layout: 'layouts/layoutBack'});
+// Middleware para verificar la autenticación del administrador
+function isAuthenticatedAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user instanceof Admin) {
+        return next();
+    }
+    res.redirect('/admin/login');
+}
+
+router.get('/dashboard',isAuthenticatedAdmin,(req, res) => {
+    res.render('pages/dashboard', { title: 'BookStore | Dashboard', layout: 'layouts/layoutBack'});
 });
+
+
 
 export default router;

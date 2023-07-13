@@ -1,6 +1,6 @@
-<div class="row d-flex justify-content-start clearfix">
+<div class="row d-flex justify-content-start clearfix" >
     <% for(let i=start; i < end; i++) { %>
-        <div class="col-3 card p-0 card-libro m-2" name="tarjeta-libro" data-categoria="<%= libros[i].categoria %>" data-editorial="<%= libros[i].editorial %>" data-autor="<%= libros[i].autor %>">
+        <div class="col-3 card p-0 card-libro m-2" id="prueba-<%= libros[i].isbn %>" name="tarjeta-libro" data-categoria="<%= libros[i].categoria %>" data-editorial="<%= libros[i].editorial %>" data-autor="<%= libros[i].autor %>">
             <div class="contenedor-imagen" data-mdb-ripple-color="light">
                 <a href="/libros/<%= libros[i].isbn %>">
                     <img class="img-portada-libro rounded-2" src="<%= libros[i].imagen %>"

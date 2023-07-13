@@ -22,7 +22,7 @@ async function obtenerCategorias() {
     }
 };
 
-//Función para obtener la lista de autores
+//Función para obtener la lista de editoriales
 async function obtenerEditoriales() {
     try {
         const editoriales = await Libro.distinct('editorial');
@@ -44,7 +44,7 @@ async function obtenerAutores() {
     }
 };
 
-  // Función para obtener un libro por su ID
+// Función para obtener un libro por su ID
 async function obtenerLibroPorId(req, res) {
     try {
         const { id } = req.params;
@@ -127,5 +127,4 @@ export default{
     crearLibro,
     actualizarLibro,
     eliminarLibro
-
 }

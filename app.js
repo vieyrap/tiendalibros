@@ -11,7 +11,7 @@ import configureFlash from './backend/config/flash.js'
 import connectDB from './backend/config/db.js';
 import indexRouter from './backend/routes/index.routes.js';
 import userRouter from './backend/routes/user.routes.js'
-import dashboardRouter from './backend/routes/dashboard.routes.js';
+import adminRouter from './backend/routes/admin.routes.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -49,9 +49,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-//Variables globales
+//Current User
 app.use(function (req, res,next){
     res.locals.currentUser = req.user;
+    res.locals.login = req.isAuthenticated() //para poder verificar desde todas las rutas si el usuario esta logueado
+    res.locals.session = req.session.cart // para ver las session
     next();
 })
 
@@ -65,7 +67,7 @@ app.use(indexRouter);
 app.use(userRouter);
 
 // Rutas Backend
-app.use('/admin', dashboardRouter);
+app.use('/admin', adminRouter);
 
 //Cualquier url no definida envia este mensaje
 app.get('/*', (req,res)=>{

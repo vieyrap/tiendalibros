@@ -7,6 +7,7 @@ let adminScheme=new Schema({
     email:String,
     password:String
 })
+
 adminScheme.plugin(passportLocalMongoose,{usernameField:'email'})
 
 export default model('Admin',adminScheme)
